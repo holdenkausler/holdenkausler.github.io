@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" margin="10px">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Holden Kausler Page 2</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body style="background-color:black;">
+    <p>The code I wrote for my web devlopment class for a Jimmy John's themed quiz</p>
+    <div class="box">
+        <pre>
+            <code>
+                <p>$(document).ready(function () {
+        var correctSoFar=0;
+            questionNumber=0;
+    
+            function setup(){
+                $('#answerButtonGroup').hide();
+                $('#question').hide();
+                $('#counter').hide();
+                $('#next').hide();
+                $('#start').show();
+            };
+    
+            $('#start').on('click', function(startQuiz){
+                $('#answerButtonGroup').show();
+                $('#question').show();
+                $('#counter').show();
+                $('#next').show();
+                $('#start').hide();
+                showQuestion();
+            });
+    
+            var disableButtons=false;
+            const questionField=document.getElementById('question');
+    
+            function showAnswers(){
+                answer1.innerText=questions[questionNumber].answer[0].text;
+                answer2.innerText=questions[questionNumber].answer[1].text;
+                answer3.innerText=questions[questionNumber].answer[2].text;
+                answer4.innerText=questions[questionNumber].answer[3].text;
+            
+                answer1.value=questions[questionNumber].answer[0].isCorrect;
+                answer2.value=questions[questionNumber].answer[1].isCorrect;
+                answer3.value=questions[questionNumber].answer[2].isCorrect;
+                answer4.value=questions[questionNumber].answer[3].isCorrect;    
+            }
+    
+            function showQuestion(){
+                disableButtons=false;
+                var currentQuestion=questions[questionNumber];
+                $('#question').text(currentQuestion.questionText);
+                showAnswers();
+    
+                for (var i=1; i<=4; i++){
+                    $('#answer'+i).click(function(){
+                        reveal(i, currentQuestion);
+                    });
+                }
+            }
+    
+            function reveal(num, currentQuestion2) {
+                if(disableButtons){
+                    return;
+                }
+                var currentAnswerNumber;
+                if(currentQuestion2.answer[0].isCorrect){
+                    currentAnswerNumber=0;
+                }else if(currentQuestion2.answer[1].isCorrect){
+                    currentAnswerNumber=1;
+                }else if(currentQuestion2.answer[2].isCorrect){
+                    currentAnswerNumber=2;
+                }else if(currentQuestion2.answer[3].isCorrect){
+                    currentAnswerNumber=3;
+                }else{
+                    console.log('None of the answers are recognized as correct, idiot');
+                }
+    
+                if(num==currentAnswerNumber){
+                    correctSoFar++;
+                    console.log('correct Answer Chosen');
+                    $('#reveal').show();
+                }
+    
+            }
+    })
+    
+    
+    const questions = [{
+        id: 0,
+        questionText: "How many Jimmy John's are there in Columbia, MO?",
+        answer: [{ text: "1", isCorrect: false },
+                { text: "2", isCorrect: false },
+                { text: "4", isCorrect: false },
+                { text: "5", isCorrect: true }
+            ]
+    },
+    {
+        id: 1,
+        questionText: "What makes slims unique?",
+        answer: [{ text: "They are smaller", isCorrect: false },
+                { text: "They have only meats or cheese, no veggies or sauce", isCorrect: true },
+                { text: "They get less mayo", isCorrect: false },
+                { text: "They get extra veggies", isCorrect: false }
+            ]
+    },
+    {
+        id: 2,
+        questionText: "Which sandwiches have no mayo?",
+        answer: [{ text: "The 3, 5 and 15", isCorrect: true },
+                { text: "The 2, 3, 4, 14, 16 and 17", isCorrect: false },
+                { text: "The 6 and 13", isCorrect: false },
+                { text: "The Gargantuan", isCorrect: false }
+            ]
+    },
+    {
+        id: 3,
+        questionText: "Which sandwiches get onions, herbs, and sauce",
+        answer: [{ text: "The ones with Cheese", isCorrect: false },
+                { text: "The ones with Tuna", isCorrect: false },
+                { text: "The Billy Club and the Ultimate Porker", isCorrect: false },
+                { text: "The ones with Vito", isCorrect: true }
+            ]
+    },
+    {
+        id: 4,
+        questionText: "Which sandwiches can be turned into Little Johns?",
+        answer: [{ text: "All of them", isCorrect: false },
+                { text: "The originals", isCorrect: true },
+                { text: "The favorites", isCorrect: false },
+                { text: "The slims", isCorrect: false }
+            ]
+    }
+    ]</p>
+            </code>
+        </pre>
+    </div>
+    
+    <p><a href="HoldenKauslerFinal.html" target=blank>Back to Jimmy Zone</a></p>
+  </body>
